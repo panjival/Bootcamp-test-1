@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Tampilkan data</title>
+  </head>
+  <body>
+    <h1>JAWABAN 3</h1>
+
+    <table id="tabel" class="table table-hover mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Region</th>
+            <th scope="col">Total Country</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <script>
+
+          function getData() {
+              fetch('http://localhost:3000/db').then(resp => resp.json()).then(resp => {
+                  const table = document.querySelector('#tabel').getElementsByTagName('tbody')[0];
+                  
+                  //const data = JSON.parse(resp);
+                  table.innerHTML = '';
+                  resp.forEach(r => { 
+                      const row = table.insertRow();
+                      
+                      const cellRegion = row.insertCell();
+                      const cellTotalCountry = row.insertCell();
+                      
+                      cellRegion.innerHTML = r.region;
+                      cellTotalCountry.innerHTML = r.totalcountry;
+                      
+                    });
+                    
+                });
+            }
+            getData();
+
+  </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+  </body>
+</html>
